@@ -1,14 +1,20 @@
 const utils = require('./index')
 
 describe('[Exercise 1] trimProperties', () => {
+  let input
+  let expected
+  let actual
+  beforeEach(() => {
+    input = { foo: '  foo ', bar: 'bar ', baz: ' baz' }
+    expected = { foo: 'foo', bar: 'bar', baz: 'baz' }
+    actual = utils.trimProperties(input)
+  })
   test('[1] returns an object with the properties trimmed', () => {
-    // EXAMPLE
-    const input = { foo: '  foo ', bar: 'bar ', baz: ' baz' }
-    const expected = { foo: 'foo', bar: 'bar', baz: 'baz' }
-    const actual = utils.trimProperties(input)
     expect(actual).toEqual(expected)
   })
-  test.todo('[2] returns a copy, leaving the original object intact')
+  test('[2] returns a copy, leaving the original object intact', () => {
+    expect(actual).not.toEqual(input)
+  })
 })
 
 describe('[Exercise 2] trimPropertiesMutation', () => {
@@ -17,7 +23,9 @@ describe('[Exercise 2] trimPropertiesMutation', () => {
 })
 
 describe('[Exercise 3] findLargestInteger', () => {
-  test.todo('[5] returns the largest number in an array of objects { integer: 2 }')
+  test.todo(
+    '[5] returns the largest number in an array of objects { integer: 2 }'
+  )
 })
 
 describe('[Exercise 4] Counter', () => {
@@ -26,7 +34,9 @@ describe('[Exercise 4] Counter', () => {
     counter = new utils.Counter(3) // each test must start with a fresh couter
   })
   test.todo('[6] the FIRST CALL of counter.countDown returns the initial count')
-  test.todo('[7] the SECOND CALL of counter.countDown returns the initial count minus one')
+  test.todo(
+    '[7] the SECOND CALL of counter.countDown returns the initial count minus one'
+  )
   test.todo('[8] the count eventually reaches zero but does not go below zero')
 })
 
@@ -57,6 +67,10 @@ describe('[Exercise 6] Car', () => {
 describe('[Exercise 7] isEvenNumberAsync', () => {
   test.todo('[19] resolves true if passed an even number')
   test.todo('[20] resolves false if passed an odd number')
-  test.todo('[21] rejects an error with the message "number must be a number" if passed a non-number type')
-  test.todo('[22] rejects an error with the message "number must be a number" if passed NaN')
+  test.todo(
+    '[21] rejects an error with the message "number must be a number" if passed a non-number type'
+  )
+  test.todo(
+    '[22] rejects an error with the message "number must be a number" if passed NaN'
+  )
 })
