@@ -7,7 +7,11 @@
  * trimProperties({ name: '  jane  ' }) // returns a new object { name: 'jane' }
  */
 function trimProperties(obj) {
-  // ✨ implement
+  const obj2 = { ...obj }
+  Object.keys(obj2).forEach((key) => {
+    obj2[key] = obj2[key].trim()
+  })
+  return obj2
 }
 
 /**
@@ -19,7 +23,11 @@ function trimProperties(obj) {
  * trimPropertiesMutation({ name: '  jane  ' }) // returns the object mutated in place { name: 'jane' }
  */
 function trimPropertiesMutation(obj) {
-  // ✨ implement
+  for (const prop in obj) {
+    obj[prop] = obj[prop].trim()
+  }
+
+  return obj
 }
 
 /**
@@ -31,7 +39,7 @@ function trimPropertiesMutation(obj) {
  * findLargestInteger([{ integer: 1 }, { integer: 3 }, { integer: 2 }]) // returns 3
  */
 function findLargestInteger(integers) {
-  // ✨ implement
+  return Math.max(...integers)
 }
 
 class Counter {
@@ -41,6 +49,7 @@ class Counter {
    */
   constructor(initialNumber) {
     // ✨ initialize whatever properties are needed
+    this.initialNumber = initialNumber
   }
 
   /**
@@ -55,8 +64,12 @@ class Counter {
    * counter.countDown() // returns 0
    * counter.countDown() // returns 0
    */
-  countDown() {
-    // ✨ implement
+  countDown(initialNumber) {
+    if (initialNumber <= 0) {
+      return (initialNumber = 0)
+    } else {
+      return (initialNumber = initialNumber - 1)
+    }
   }
 }
 
@@ -66,6 +79,8 @@ class Seasons {
    */
   constructor() {
     // ✨ initialize whatever properties are needed
+    this.minus = -1
+    this.seasons = ['summer', 'fall', 'winter', 'spring']
   }
 
   /**
@@ -81,7 +96,12 @@ class Seasons {
    * seasons.next() // returns "summer"
    */
   next() {
-    // ✨ implement
+    if (this.minus === 3) {
+      this.minus = -1
+    }
+    this.minus = this.minus += 1
+
+    return this.seasons[this.minus]
   }
 }
 
@@ -95,7 +115,8 @@ class Car {
   constructor(name, tankSize, mpg) {
     this.odometer = 0 // car initilizes with zero miles
     this.tank = tankSize // car initiazes full of gas
-    // ✨ initialize whatever other properties are needed
+    this.name = name
+    this.mpg = mpg
   }
 
   /**
@@ -112,7 +133,13 @@ class Car {
    * focus.drive(200) // returns 600 (ran out of gas after 100 miles)
    */
   drive(distance) {
-    // ✨ implement
+    if (this.tank === 0) {
+      return this.tank
+    } else {
+      this.tank -= distance / this.mpg
+      this.odometer += distance
+      return this.odometer
+    }
   }
 
   /**
@@ -127,7 +154,9 @@ class Car {
    * focus.refuel(99) // returns 600 (tank only holds 20)
    */
   refuel(gallons) {
-    // ✨ implement
+    if (this.tank < 20 || gallons > 20) {
+      return this.tank
+    }
   }
 }
 
@@ -151,7 +180,11 @@ class Car {
  * })
  */
 function isEvenNumberAsync(number) {
-  // ✨ implement
+  if (typeof number === 'number') {
+    return Promise.resolve(number % 2 === 0 ? true : false)
+  } else {
+    return Promise.reject('number must be a number')
+  }
 }
 
 module.exports = {
